@@ -1,5 +1,10 @@
 package com.jsrf.sort;
 
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jsrf
  */
@@ -96,5 +101,94 @@ public class SortService {
             //插入正确的位置
             a[j + 1] = value;
         }
+    }
+
+    /**
+     * 归并排序
+     * https://www.javazhiyin.com/1222.html
+     */
+    public static void main(String[] args) {
+//        int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+//        sort(arr);
+//        System.out.println(Arrays.toString(arr));
+        int[] arr1 = {1, 2, 3, 4};
+        int[] arr2 = {5, 6, 7, 8, 9};
+        List<Integer> integers = mergeSort(arr1, arr2);
+        System.out.println(integers);
+    }
+
+    public static void sort(int[] arr) {
+        int[] temp = new int[arr.length];
+        //在排序前，先建好一个长度等于原数组长度的临时数组，
+        //避免递归中频繁开辟空间
+        sort(arr, 0, arr.length - 1, temp);
+    }
+
+    private static void sort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            //左边归并排序，使得左子序列有序
+            sort(arr, left, mid, temp);
+            //右边归并排序，使得右子序列有序
+            sort(arr, mid + 1, right, temp);
+            //将两个有序子数组合并操作
+            merge(arr, left, mid, right, temp);
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+        //左序列指针
+        int i = left;
+        //右序列指针
+        int j = mid + 1;
+        //临时数组指针
+        int t = 0;
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[t++] = arr[i++];
+            } else {
+                temp[t++] = arr[j++];
+            }
+        }
+        //将左边剩余元素填充进temp中
+        while (i <= mid) {
+            temp[t++] = arr[i++];
+        }
+        //将右序列剩余元素填充进temp中
+        while (j <= right) {
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        //将temp中的元素全部拷贝到原数组中
+        while (left <= right) {
+            arr[left++] = temp[t++];
+        }
+    }
+
+    /**
+     * 归并排序
+     */
+    static List<Integer> mergeSort(int[] arr1, int[] arr2) {
+        ArrayList<Integer> list = Lists.newArrayList();
+        int m = arr1.length - 1;
+        int n = arr2.length - 1;
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < m && p2 < n) {
+            if (arr1[p1] <= arr2[p2]) {
+                list.add(arr1[p1++]);
+            } else {
+                list.add(arr2[p2++]);
+            }
+        }
+        //将左边剩余元素填充进temp中
+        while (p1 <= m) {
+            list.add(arr1[p1++]);
+        }
+        //将右序列剩余元素填充进temp中
+        while (p2 <= n) {
+            list.add(arr2[p2++]);
+        }
+        return list;
     }
 }

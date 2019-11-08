@@ -1,4 +1,4 @@
-package com.jsrf.proxy;
+package com.jsrf.proxy.jdk;
 
 public interface IService {
     void sayHello();

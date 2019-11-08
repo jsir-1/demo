@@ -1,6 +1,6 @@
-package com.jsrf.proxy;
+package com.jsrf.proxy.jdk;
 
-public abstract class ProxyTest {
+public class ProxyTest {
 
     public void parent(){
         System.out.println("parent");

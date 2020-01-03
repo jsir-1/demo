@@ -8,4 +8,6 @@ package com.jsrf.test;
  * Time:5:45 下午
  */
 public class TestA {
+    String name;
+    int age;
 }

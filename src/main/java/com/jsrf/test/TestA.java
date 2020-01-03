@@ -12,6 +12,37 @@ public class TestA {
     Integer age;
     String address;
     String phone;
+    String first;
+    String second;
+    String third;
+
+    public String getThird() {
+        return third;
+    }
+
+    public void setThird(String third) {
+        this.third = third;
+    }
+
+    public String getSecond() {
+        return second;
+    }
+
+    public void setSecond(String second) {
+        this.second = second;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
 
     public String getPhone() {
         return phone;

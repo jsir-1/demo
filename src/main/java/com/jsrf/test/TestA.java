@@ -17,6 +17,33 @@ public class TestA {
     String third;
     String four;
     String five;
+    String six;
+    String seven;
+    String eight;
+
+    public String getEight() {
+        return eight;
+    }
+
+    public void setEight(String eight) {
+        this.eight = eight;
+    }
+
+    public String getSeven() {
+        return seven;
+    }
+
+    public void setSeven(String seven) {
+        this.seven = seven;
+    }
+
+    public String getSix() {
+        return six;
+    }
+
+    public void setSix(String six) {
+        this.six = six;
+    }
 
     public String getFive() {
         return five;

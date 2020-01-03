@@ -15,6 +15,24 @@ public class TestA {
     String first;
     String second;
     String third;
+    String four;
+    String five;
+
+    public String getFive() {
+        return five;
+    }
+
+    public void setFive(String five) {
+        this.five = five;
+    }
+
+    public String getFour() {
+        return four;
+    }
+
+    public void setFour(String four) {
+        this.four = four;
+    }
 
     public String getThird() {
         return third;

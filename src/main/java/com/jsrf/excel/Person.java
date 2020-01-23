@@ -2,8 +2,6 @@ package com.jsrf.excel;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * @author calmer
  * @since 2018/12/5 14:50
@@ -20,7 +18,7 @@ public class Person extends Parent {
     private boolean ismanw;
     private boolean manw;
     private String father;
-    private List<String> list;
     private Boolean iswoismen;
+    private Integer height;
 
 }

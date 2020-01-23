@@ -17,6 +17,10 @@ public class Person extends Parent {
     private String job;
     private String address;
     private Boolean man;
-//    private String father;
+    private boolean ismanw;
+    private boolean manw;
+    private String father;
     private List<String> list;
+    private Boolean iswoismen;
+
 }

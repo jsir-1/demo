@@ -51,7 +51,7 @@ public class ExcelUtil {
      * @param data               要导出的数据
      * @param type               Excel 生成方式
      * @param isNeedFatherFields 是否要导出父类的属性
-     * @param file           生成的文件
+     * @param file               生成的文件
      * @return 对应 type 的工作簿实例对象
      */
     public static void createExcel(List data, @ExcelType String type, Boolean isNeedFatherFields, String file) throws Exception {
@@ -91,11 +91,12 @@ public class ExcelUtil {
                     //加载第一行数据时，初始化所有属性的getter方法
                     if (i == 0) {
                         String fieldName = fieldsName[j];
-                        //处理布尔值命名 "isXxx" -> "setXxx"
-                        if (fieldName.startsWith("is")) {
-                            fieldName = fieldName.split("is")[1];
+                        //处理boolean类型的属性
+                        try {
+                            methods[j] = obj.getClass().getMethod("get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1));
+                        } catch (NoSuchMethodException e) {
+                            methods[j] = obj.getClass().getMethod("is" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1));
                         }
-                        methods[j] = obj.getClass().getMethod("get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1));
                     }
                     Cell cell = row.createCell(j);
                     Object value = methods[j].invoke(obj);

@@ -2,9 +2,7 @@ package com.jsrf.tree;
 
 import com.google.common.collect.Lists;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author jsrf
@@ -114,32 +112,13 @@ public class TreeService {
      * @param args
      */
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("请输入数字的个数：");
-        int T = sc.nextInt();
-        int[] t = new int[T];
-        System.out.println("请输入数字，以空格分隔：");
-        for (int i = 0; i < T; i++) {
-            t[i] = sc.nextInt();
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        for (Integer cur : list) {
+            System.out.println(cur);
         }
-
-        TreeNode root = null;
-        for (int i = 0; i < T; i++) {
-            root = insert(root, t[i]);
-        }
-        System.out.println("递归先序遍历：");
-        preOrder(root);
-        System.out.println();
-        System.out.println("递归中序遍历：");
-        mindiumOrder(root);
-        System.out.println();
-        System.out.println("递归后序遍历：");
-        postOrder(root);
-        System.out.println();
-        System.out.println("广度优先遍历：");
-        levelOrder(root);
-
     }
 
     /**
@@ -330,5 +309,52 @@ public class TreeService {
         node1.setLeft(right);
         node1.setRight(left);
         return node1;
+    }
+
+    /**
+     * zigzag遍历，使用双栈的方法
+     *
+     * @param root
+     * @return
+     */
+    public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(root);
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            while (!stack1.isEmpty()) {
+                TreeNode temp = stack1.pop();
+                list.add(temp.data);
+                if (temp.left != null) {
+                    stack2.push(temp.left);
+                }
+                if (temp.right != null) {
+                    stack2.push(temp.right);
+                }
+            }
+            if (!list.isEmpty()) {
+                result.add(list);
+            }
+            list = new ArrayList<>();
+            while (!stack2.isEmpty()) {
+                TreeNode temp = stack2.pop();
+                list.add(temp.data);
+                if (temp.right != null) {
+                    stack1.push(temp.right);
+                }
+                if (temp.left != null) {
+                    stack1.push(temp.left);
+                }
+            }
+            if (!list.isEmpty()) {
+                result.add(list);
+            }
+        }
+        return result;
     }
 }

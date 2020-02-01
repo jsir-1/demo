@@ -3,6 +3,8 @@ package com.jsrf.guava;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.HashBiMap;
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnel;
 
 /**
  * @author jsrf
@@ -24,5 +26,9 @@ public class GuavaTest {
         System.out.println(t);
     }
 
-
+    public void bloomFilter(){
+        BloomFilter.create((Funnel<Object>) (from, into) -> {
+            into.putLong(from.hashCode());
+        },2,0.3);
+    }
 }

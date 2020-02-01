@@ -11,6 +11,7 @@ import java.util.List;
 public class SortService {
     /**
      * 快排 时间复杂度就是 O（nlogn）    空间复杂度为O（nlogn）
+     * 最差的情况下是已经排序好的 O(n平方)
      *
      * @param a 待排序的数组
      * @param l 数组的左边界(例如，从起始位置开始排序，则l=0)
